@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Stock
-from .forms import StockCreateForm, StockSearchForm
+from .forms import StockCreateForm, StockSearchForm, StockUpdateForm
 
 def home(request):
     title = 'Welcome: This is the Home Page'
@@ -54,7 +54,7 @@ def update_items(request, pk):
 	context = {
 		'form':form
 	}
-	return render(request, 'add_items.html', context)
+	return render(request, 'add_item.html', context)
 
 def delete_items(request, pk):
 	queryset = Stock.objects.get(id=pk)
