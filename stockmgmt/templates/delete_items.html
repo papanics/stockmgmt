@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{{title}}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -48,39 +47,17 @@
     
     {% include 'navbar.html' %}
 
-    <main role="main" class="container">
-        <div class="bg-light p-5 rounded">
-            
-            <div class="header">{{header}}</div>
-            <form method='POST' action=''>{% csrf_token %}
-                {{form|crispy}}
-                    <input type="submit" value='Search'/>
-            </form>
-            <br>
-                <div class="display_table">
-                    <table class='table'>
-                        <thead>
-                        <tr>
-                            <th>COUNT</th>
-                            <th>CATEGORY</th>
-                            <th>ITEM NAME</th>
-                            <th>QUANTITY IN STORE</th>
-                            <th>DELETE</th>
-                        </tr>
-                        </thead>
-                        {% for instance in queryset %}
-                        <tr>
-                            <td>{{forloop.counter}}</td>
-                            <td>{{instance.category}}</td>
-                            <td><a href="{% url 'update_items' instance.id %}">{{instance.item_name}}</a></td>
-                            <td>{{instance.quantity}}</td>
-                            <td><a href="{% url 'delete_items' instance.id %}">Delete</a></td>
-                        </tr>
-                    {% endfor %}
-                    </table>
-                </div>
-        </div>
-    </main>
+<main class="container">
+  <div class="bg-light p-5 rounded">
+    <h1>{{title}}</h1>
+     <form method="post" action="">
+    {% csrf_token %}
+      <h1>Are you sure you want to delete?</h1><br>
+     	 <input class="btn btn-danger" type="submit" value="Yes" />
+      <a href="/list_items"><div class="btn btn-primary">Cancel</div></a>
+	</form>
+  </div>
+</main>
 
 
     <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
