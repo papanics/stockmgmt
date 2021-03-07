@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib import messages
 import csv
 
 from .models import Stock
@@ -46,6 +47,7 @@ def add_item(request):
     form = StockCreateForm(request.POST or None)
     if form.is_valid():
         form.save()
+        messages.success(request, 'Successfully Saved')
         return redirect('list_items')
     context = {
         'title': title,
@@ -54,23 +56,23 @@ def add_item(request):
     return render(request, 'add_item.html', context)
 
 def update_items(request, pk):
-	queryset = Stock.objects.get(id=pk)
-	form = StockUpdateForm(instance=queryset)
-	if request.method == 'POST':
-		form = StockUpdateForm(request.POST, instance=queryset)
-		if form.is_valid():
-			form.save()
-			return redirect('/list_items')
+    queryset = Stock.objects.get(id=pk)
+    form = StockUpdateForm(instance=queryset)
+    if request.method == 'POST':
+        form = StockUpdateForm(request.POST, instance=queryset)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully Update Records')
+            return redirect('/list_items')
+    context = {'form':form}
+    return render(request, 'add_item.html', context)
 
-	context = {
-		'form':form
-	}
-	return render(request, 'add_item.html', context)
 
 def delete_items(request, pk):
-	queryset = Stock.objects.get(id=pk)
-	if request.method == 'POST':
-		queryset.delete()
-		return redirect('/list_items')
-	return render(request, 'delete_items.html')
+    queryset = Stock.objects.get(id=pk)
+    if request.method == 'POST':
+        queryset.delete()
+        messages.success(request, 'Successfully Deleted')
+        return redirect('/list_items')
+    return render(request, 'delete_items.html')
 
