@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 
 
 class Category(models.Model):
@@ -20,7 +20,7 @@ class Stock(models.Model):
 	created_by = models.CharField(max_length=50, blank=True, null=True)
 	reorder_level = models.IntegerField(default='0', blank=True, null=True)
 	last_updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+	timestamp = models.DateTimeField(auto_now=False, default=timezone.now)#auto_now_add=True, 
 	
 	def __str__(self):
 		return self.item_name
