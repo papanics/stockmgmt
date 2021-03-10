@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 
 
 class Category(models.Model):
@@ -8,7 +7,8 @@ class Category(models.Model):
 		return self.name
 
 class Stock(models.Model):
-	category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
+	#category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
+	category = models.CharField(max_length=50, blank=True, null=True)
 	item_name = models.CharField(max_length=50, blank=True, null=True)
 	quantity = models.IntegerField(default='0', blank=True, null=True)
 	receive_quantity = models.IntegerField(default='0', blank=True, null=True)
@@ -20,7 +20,7 @@ class Stock(models.Model):
 	created_by = models.CharField(max_length=50, blank=True, null=True)
 	reorder_level = models.IntegerField(default='0', blank=True, null=True)
 	last_updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-	timestamp = models.DateTimeField(auto_now=False, default=timezone.now)#auto_now_add=True, 
+	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False) 
 	
 	def __str__(self):
 		return self.item_name
