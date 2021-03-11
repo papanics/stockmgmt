@@ -5,6 +5,9 @@ import csv
 
 from .models import Stock, Category
 from .forms import *
+
+from django.contrib.auth.decorators import login_required
+
 def home(request):
     title = 'Welcome: This is the Home Page'
     context = {
@@ -12,6 +15,7 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
+@login_required
 def list_items(request):
     header = 'List of list items'
     form = StockSearchForm(request.POST or None)
@@ -41,7 +45,7 @@ def list_items(request):
         }
     return render(request, 'list_items.html', context)
 
-    
+@login_required   
 def add_item(request):
     title = 'Add item'
     form = StockCreateForm(request.POST or None)
@@ -76,6 +80,7 @@ def delete_items(request, pk):
         return redirect('/list_items')
     return render(request, 'delete_items.html')
 
+@login_required
 def list_category(request):
     header = 'List of Category'
     form = CategoryCreateForm(request.POST or None)
