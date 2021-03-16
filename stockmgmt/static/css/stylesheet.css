@@ -7,7 +7,9 @@ body {
 	width: 95%;
 	margin: auto;
 }
-
+.mybutton{
+	width: 100%;
+  }
 /*Make alternating colors for the table rows*/
 .table tr:nth-child(odd){
 	background: #B8CAE4
@@ -19,6 +21,7 @@ body {
 
 th {
   background-color: #337ab7;
+  background-image: url("../img/bg.png");
   color: white;
 }
 .display_table{
@@ -27,9 +30,9 @@ th {
 	padding-left: 5px;
 	padding-right: 5px;
 	padding-bottom: 20px;
-	box-shadow: 12px 12px 20px 6px #2e6da4;
+	box-shadow: 12px 12px 10px #2e6da4;
 }
-.header {
+.header{
     font-family: helvetica;
     color: #337ab7;
     font-size: 50px;
@@ -45,4 +48,61 @@ th {
 	color: white;
 	box-shadow: 12px 12px 12px #e61c66;
 	text-align: center;
+}
+#version-display{
+    background-color: #e61c66;
+    color: white;
+    box-shadow: 5px 12px 12px #2e6da4;
+    text-align: center;
+    display: inline;
+    font-weight: bolder;
+    padding: 15px;
+    position: fixed;
+    top: 40px;
+    left: -5px;
+    z-index: 3000;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+/* Modal Header */
+.modal-header {
+    padding: 2px 16px;
+    background-color: #e61c66;
+    color: white;
+}
+
+/* Modal Body */
+.modal-body {padding: 2px 16px;}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #e61c66;
+    color: white;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+
+
+.dev-info{
+    width: 50%;
+    text-align: center;
+    font-family: helvetica;
+    font-weight: bold;
+    display: inline;
+}
+
+.dev-info-logo{
+    width: 50px;
+    float: left;
 }

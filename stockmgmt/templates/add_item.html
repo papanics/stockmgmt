@@ -50,10 +50,16 @@
 <main class="container">
   <div class="bg-light p-5 rounded">
     <h1>{{title}}</h1>
-    <form action="" method="post">{% csrf_token %}
-        {{form|crispy}}
-        <input type="submit" value="save">
-    </form>
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="display_table">
+          <form action="" method="post">{% csrf_token %}
+              {{form|crispy}}<br>
+              <input class="btn btn-primary" type="submit" value="save">
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </main>
 

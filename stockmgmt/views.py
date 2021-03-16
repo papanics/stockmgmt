@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 import csv
 
-from .models import Stock, Category
+from .models import *
 from .forms import *
 
 from django.contrib.auth.decorators import login_required
@@ -200,3 +200,13 @@ def reorder_level(request, pk):
 			"form": form,
 		}
 	return render(request, "add_item.html", context)
+
+@login_required
+def list_history(request):
+	header = 'LIST OF ITEMS'
+	queryset = StockHistory.objects.all()
+	context = {
+		"header": header,
+		"queryset": queryset,
+	}
+	return render(request, "list_history.html",context)
