@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'stockmgmt',
-    'django_mysql',
+    #'django_mysql',
 ]
 
 MIDDLEWARE = [
@@ -142,5 +142,3 @@ REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
-import mimetypes
-mimetypes.add_type("text/css", ".css", True)
