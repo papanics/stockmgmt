@@ -56,7 +56,8 @@
           <form action="" method="post">{% csrf_token %}
               {{form|crispy}}<br>
               <input class="btn btn-primary" type="submit" value="save">
-          </form>
+            </form><br>
+            <a href="{% url 'add_category' %}"><div class="btn btn-primary">Add Category</div></a>
         </div>
       </div>
     </div>
