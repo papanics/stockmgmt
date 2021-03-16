@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 import csv
 
-from .models import Stock, Category
+from .models import *
 from .forms import *
 
 from django.contrib.auth.decorators import login_required
@@ -115,7 +115,6 @@ def add_category(request):
     context = {
     'title': title,
     }
-    
     form = CategoryCreateForm(request.POST or None)
     if form.is_valid():
         form.save()
@@ -125,6 +124,7 @@ def add_category(request):
         'title': title,
         'form': form,
     }
+    #return redirect('add_item')
     return render(request, 'add_category.html', context)
 
     
@@ -165,8 +165,7 @@ def issue_items(request, pk):
 #		"username": 'Issue By: ' + str(request.user),
 	}
 	return render(request, "add_item.html", context)
-
-
+    
 def receive_items(request, pk):
 	queryset = Stock.objects.get(id=pk)
 	form = ReceiveForm(request.POST or None, instance=queryset)
@@ -200,3 +199,13 @@ def reorder_level(request, pk):
 			"form": form,
 		}
 	return render(request, "add_item.html", context)
+
+@login_required
+def list_history(request):
+	header = 'LIST OF ITEMS'
+	queryset = StockHistory.objects.all()
+	context = {
+		"header": header,
+		"queryset": queryset,
+	}
+	return render(request, "list_history.html",context)

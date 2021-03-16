@@ -60,29 +60,36 @@
         <div class="bg-light p-5 rounded">
             
             <div class="header">{{header}}</div>
-            <form method='POST' action=''>{% csrf_token %}
-                {{form|crispy}}
-                    <input type="submit" value='Search'/>
-            </form>
             <br>
-                <div class="display_table">
-                    <table class='table'>
-                        <thead>
-                        <tr>
-                            <th>COUNT</th>
-                            <th>NAME</th>
-                            <th>DELETE</th>
-                        </tr>
-                        </thead>
-                        {% for instance in queryset %}
-                        <tr>
-                            <td>{{forloop.counter}}</td>
-                            <td>{{instance.name}}</td>
-                            <td><a href="{% url 'delete_category' instance.id %}">Delete</a></td>
-                        </tr>
-                    {% endfor %}
-                    </table>
-                </div>
+            <div class="display_table">
+                <table class='table'>
+                  <thead>
+                    <tr>
+                      <th>COUNT</th>
+                      <th>ID</th>
+                      <th>CATEGORY</th>
+                      <th>ITEM NAME</th>
+                      <th>QUANTITY IN STORE</th>
+                      <th>ISSUE QUANTITY</th>
+                      <th>RECEIVE QUANTITY</th>
+                      <th>LAST UPDATED</th>
+                    </tr>
+                  </thead>
+                {% for instance in queryset %}
+                    <tr>
+        
+                      <td>{{forloop.counter}}</td>
+                      <td>{{instance.id}}</td>
+                      <td>{{instance.category}}</td>
+                      <td><{{instance.item_name}}</td>
+                      <td>{{instance.quantity}}</td>
+                      <td>{{instance.issue_quantity}}</td>
+                      <td>{{instance.receive_quantity}}</td>
+                      <td>{{instance.last_updated}}</td>
+                    </tr>
+                {% endfor %}
+              </table>
+            </div>
         </div>
     </main>
 
